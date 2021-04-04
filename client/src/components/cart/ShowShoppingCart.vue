@@ -137,5 +137,5 @@ export default {
   border-right: 15px solid transparent;
 
   border-bottom: 15px solid #f7db68;
-}
+	}
 </style>
