@@ -1,6 +1,7 @@
 <template>
   <v-main class="ma-8 d-flex ma-16">
     <v-row class="d-flex justify-center mb-4">
+      <!-- Do we need this? //Patrick -->
       <h1>Information</h1>
     </v-row>
     <v-row class="d-flex justify-center white" cols="8" width="80vw">
@@ -279,7 +280,7 @@ export default {
   font-weight: bold;
 }
 .test-type {
-  letter-spacing: 5px;
+  letter-spacing: 2px;
   font-family: "Poppins", sans-serif;
   font-weight: lighter;
   font-size: 14px;
@@ -296,7 +297,8 @@ export default {
   color: blue;
 }
 .imgname {
-  width: 500px;
+  width: auto;
   margin-left: -161px;
+  max-width: 500px;
 }
 </style>
