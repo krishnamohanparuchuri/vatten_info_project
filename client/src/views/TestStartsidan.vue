@@ -9,8 +9,8 @@
           :src="`http://localhost:4000/${this.displayTest[0].image}`"
           alt="imagename"
           height="400px"
-          width="300px"
-          class="justify-center rounded"
+          width="500px"
+          class="justify-center rounded imgname"
         />
       </v-col>
       <v-col cols="4" class="d-flex flex-column justify-start">
@@ -58,7 +58,7 @@
           </v-row>
         </v-row>
         <v-row>
-          <h3 class="bold">Pris :{{ this.displayTest[0].price }} Kr</h3>
+          <h3 class="bold">Pris : {{ this.displayTest[0].price }}kr</h3>
         </v-row>
         <v-row>
           <!-- <div class="d-flex flex-row ma-2">
@@ -294,5 +294,9 @@ export default {
   font-size: 18px;
   font-display: bold;
   color: blue;
+}
+.imgname {
+  width: 500px;
+  margin-left: -161px;
 }
 </style>
