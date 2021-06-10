@@ -1,5 +1,10 @@
 <template>
   <v-main class="mt-12">
+    <v-row>
+      <v-col>
+        <square-loader loading="true" color="green"></square-loader>
+      </v-col>
+    </v-row>
     <v-row class="d-flex justify-center">
       <v-col class="d-flex justify-center" cols="12">
         <h3 class="heading-3 red--text">Payment Error</h3>
@@ -34,13 +39,32 @@
             height="300px"
           >
             <div
-              class="white--text red mb-2 d-flex justify-center align-center pa-2 rounded listItem"
+              class="
+                white--text
+                red
+                mb-2
+                d-flex
+                justify-center
+                align-center
+                pa-2
+                rounded
+                listItem
+              "
               height="150"
             >
               Try again
             </div>
             <div
-              class="white--text red d-flex justify-center align-center pa-2 rounded listItem"
+              class="
+                white--text
+                red
+                d-flex
+                justify-center
+                align-center
+                pa-2
+                rounded
+                listItem
+              "
               @click="moveToHome"
             >
               Back To Homepage
@@ -53,8 +77,13 @@
 </template>
 
 <script>
+import SquareLoader from "../components/ui/SquareLoader.vue";
 export default {
   name: "PaymentError",
+  components: {
+    SquareLoader,
+  },
+
   methods: {
     moveToHome() {
       this.$router.push("/");

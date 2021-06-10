@@ -27,10 +27,10 @@ export default {
     },
     actions: {
 
-        async getOrderInfo({ commit }) {
+        async getOrderInfo({ commit, dispatch }) {
 
-            console.log('display session value', sessionStorage.getItem('session_stripe_id'))
-            const sessionId = sessionStorage.getItem('session_stripe_id')
+            console.log('display session value', localStorage.getItem('session_stripe_id'))
+            const sessionId = window.localStorage.getItem('session_stripe_id')
             console.log('parameter', sessionId)
             const response = await fetch(`http://localhost:4000/api/checkout-session?sessionId=${sessionId}`, {
                 method: 'GET',
@@ -40,9 +40,29 @@ export default {
                 }
             });
             const data = await response.json();
-            console.log(data)
+            console.log('json parse data', data)
 
-            commit('UPDATE_RESPONSE', data, { module: 'stripe' });
+            if (response.status === 200) {
+                commit('UPDATE_RESPONSE', data, { module: 'stripe' });
+
+                const orderTests = JSON.parse(localStorage.getItem('selectedTests'));
+                const totalAmount = localStorage.getItem('total_amount');
+                const id = localStorage.getItem('USER_ASSIGN_ID')
+                    ? localStorage.getItem('USER_ASSIGN_ID')
+                    : localStorage.getItem('COMPANY_ASSIGN_ID');
+                const payload = {
+                    orderTests: orderTests,
+                    totalAmount: totalAmount,
+                    id: id,
+                };
+                console.log(payload);
+                dispatch("order/generateCompanyOrder", payload, { root: true });
+
+            } else {
+                commit('UPDATE_ERROR_MESSAGE', { message: data.message }, { root: true })
+            }
+
+
         },
         async getStripePublishableKey({ commit }) {
             const response = await fetch('http://localhost:4000/api/config', {
@@ -72,7 +92,7 @@ export default {
                 .then(async function (response) {
                     const data = await response.json();
                     console.log(data)
-                    window.localStorage.setItem('session_stripe_id', `${data.id}`);
+                    window.localStorage.setItem('session_stripe_id', `${data.sessionId}`);
                     commit('UPDATE_STRIPE_SESSION_ID', data.sessionId, { module: 'stripe' });
                     console.log('local storage ', window.localStorage)
                     return data.sessionId;
