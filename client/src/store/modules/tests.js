@@ -147,7 +147,7 @@ export default {
             findTest.image = updatedTestInfo.image
 
             state.tests.filter(test => test._id === _id).push(findTest)
-            Vue.$vToastify.success(` ${findTest.testname} är uppdaterad`)
+            Vue.$vToastify.success(` ${findTest.testname} är uppdaterad!`)
 
         },
         UPDATE_TEST(state, value) {
