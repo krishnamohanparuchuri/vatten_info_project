@@ -125,13 +125,13 @@ export default {
                 test._id != value
             })
             state.tests = remainingTests
-            Vue.$vToastify.success(`Användaren ${findTest.testname} är bortatagen`)
+            Vue.$vToastify.success(` ${findTest.testname} är bortatagen`)
             // console.log(state.tests)
 
         },
         INSERT_TEST(state, value) {
             state.tests.push(value)
-            Vue.$vToastify.success(`användaren  ${value.testname} är  tillagd i datbasen`)
+            Vue.$vToastify.success(`${value.testname} är  nu tillagd i databasen`)
 
         },
         EDIT_TEST(state, { updatedTestInfo, _id }) {
